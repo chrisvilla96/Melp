@@ -19,5 +19,6 @@ from django.urls import path
 from .views import RestaurantView
 
 urlpatterns = [
-    path('restaruants/', RestaurantView.as_view(), name='restaurants_list')
+    path('restaurants/', RestaurantList.as_view(), name='restaurants_list'),
+    path('restaurants/<uuid:pk>', RestaurantDetail.as_view(), name='restaurants_detail'),
 ]
