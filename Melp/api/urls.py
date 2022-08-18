@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import RestaurantView
+from .views import RestaurantDetail, RestaurantList, get_nearby_restaurants_count
 
 urlpatterns = [
     path('restaurants/', RestaurantList.as_view(), name='restaurants_list'),
     path('restaurants/<uuid:pk>', RestaurantDetail.as_view(), name='restaurants_detail'),
+    path('restaurants/statistics', get_nearby_restaurants_count, name='get_nearby_restaurants')
 ]
