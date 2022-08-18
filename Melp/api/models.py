@@ -1,5 +1,8 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from typing import Tuple
+import geopy.distance
+
 
 
 class Restaurant(models.Model):
@@ -22,3 +25,19 @@ class Restaurant(models.Model):
 
     def __str__(self) -> str:
         return self.name
+    
+    def meters_between_location(self, location: Tuple[float, float]) -> float:
+        """
+        Function that returns the distance in meters between restaurant's location and a given 
+        location as parameter
+        
+        Parameters
+        ----------
+        location: Tuple[float, float], required
+            The desire location to get the distance from restaurant
+        """
+        
+        restaurant_location = (float(self.lat), float(self.lng))
+
+        return geopy.distance.geodesic(location, restaurant_location).m
+
