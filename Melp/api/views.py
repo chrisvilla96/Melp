@@ -1,18 +1,40 @@
-from django.shortcuts import render
-from django.views import View
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework import generics
+
+from .models import Restaurant
+from .serializers import RestaurantSerializer
 
 
-class RestaurantView(View):
-    """View for Restaurant API Endpoints"""
+class RestaurantList(generics.ListCreateAPIView):
+    """View for Listinig Restaurants in API"""
 
-    def get(self, request):
-        pass
+    serializer_class = RestaurantSerializer
+    queryset = Restaurant.objects.all()
 
-    def post(self, request):
-        pass
 
-    def put(self, request):
-        pass
-    
-    def delete(self, request):
-        pass
+class RestaurantDetail(generics.RetrieveUpdateDestroyAPIView):
+    """View for Detail Restaurant API Endpoints"""
+
+    serializer_class = RestaurantSerializer
+    queryset = Restaurant.objects.all()
+
+@csrf_exempt
+def get_nearby_restaurants_count(request):
+    """View for retrieving nerby restaurants given a radious"""
+
+    try:
+        latitude = request.GET.get('latitude', None)
+        longitude = request.GET.get('longitude', None)
+        radious = request.GET.get('radius', None)
+
+        data = {}
+        return JsonResponse(data, status=200)
+
+
+    except Exception:
+
+        data["message"] = "Hubo un error en el request"
+        return JsonResponse(data, status=400)
+
+
