@@ -36,7 +36,7 @@ class Restaurant(models.Model):
         location: Tuple[float, float], required
             The desire location to get the distance from restaurant
         """
-        
+
         restaurant_location = (float(self.lat), float(self.lng))
 
         return geopy.distance.geodesic(location, restaurant_location).m
