@@ -17,8 +17,8 @@ class Restaurant(models.Model):
     street = models.TextField(max_length=1000)
     city = models.CharField(max_length=120)
     state = models.CharField(max_length=100)
-    lat = models.DecimalField(max_digits=8, decimal_places=3)
-    lng = models.DecimalField(max_digits=8, decimal_places=3)
+    lat = models.DecimalField(max_digits=16, decimal_places=13)
+    lng = models.DecimalField(max_digits=16, decimal_places=13)
 
     def __str__(self) -> str:
         return self.name
