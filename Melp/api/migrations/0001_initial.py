@@ -17,7 +17,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.CharField(editable=False, max_length=254, primary_key=True, serialize=False)),
                 ('rating', models.IntegerField(default=0, validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(5)])),
-                ('name', models.TextField(max_length=1000)),
+                ('name', models.CharField(max_length=254)),
+                ('site', models.TextField(max_length=1000)),
                 ('email', models.EmailField(max_length=254)),
                 ('phone', models.CharField(max_length=13)),
                 ('street', models.TextField(max_length=1000)),
