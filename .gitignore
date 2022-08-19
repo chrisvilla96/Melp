@@ -2,7 +2,7 @@
 ./env
 
 # Specific Files
-./activate
+./activate/
 
 # Django #
 *.log
@@ -14,3 +14,6 @@ media
 
 # Backup files # 
 *.bak
+
+# Data Files
+*.csv
